@@ -1,0 +1,6 @@
+[submodule "front"]
+	path = front
+	url = git@github.com:Brayan-22/bases2-proyecto-final-front.git
+[submodule "backend"]
+	path = backend
+	url = git@github.com:Brayan-22/bases2-proyecto-final-backend.git
