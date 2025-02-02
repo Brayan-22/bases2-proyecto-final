@@ -1,0 +1,47 @@
+version: "3.5"
+
+services:
+  postgres-n1:
+    image: pgedge/pgedge:latest
+    environment:
+      - "NODE_NAME=n1"
+      - "PGDATA=/data/pgdata"
+    ports:
+      - target: 5432
+        published: 6431
+        protocol: tcp
+        mode: host
+    volumes:
+      - "./db.json:/home/pgedge/db.json"
+      - "n1:/data"
+    networks:
+      - database
+    deploy:
+      labels:
+        - "node_name=n1"
+
+  postgres-n2:
+    image: pgedge/pgedge:latest
+    environment:
+      - "NODE_NAME=n2"
+      - "PGDATA=/data/pgdata"
+    ports:
+      - target: 5432
+        published: 6441
+        protocol: tcp
+        mode: host
+    volumes:
+      - "./db.json:/home/pgedge/db.json"
+      - "n2:/data"
+    networks:
+      - database
+    deploy:
+      labels:
+        - "node_name=n2"
+
+networks:
+  database:
+
+volumes:
+  n1:
+  n2:

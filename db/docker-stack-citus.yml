@@ -1,0 +1,50 @@
+services:
+  coordinator:
+    image: citusdata/citus:latest
+    hostname: coordinator
+    environment:
+      - CITUS_WORKER_NODES=2
+      - POSTGRES_PASSWORD=universidad
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=universidad
+    volumes:
+      - coordinator-data:/var/lib/postgresql/data
+    networks:
+      - ud
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  worker1:
+    image: citusdata/citus:latest
+    hostname: worker1
+    environment:
+      - POSTGRES_PASSWORD=universidad
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=universidad
+    volumes:
+      - worker1-data:/var/lib/postgresql/data
+    networks:
+      - ud
+    deploy:
+      replicas: 1
+  worker2:
+    image: citusdata/citus:latest
+    hostname: worker2
+    environment:
+      - POSTGRES_PASSWORD=universidad
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=universidad
+    volumes:
+      - worker2-data:/var/lib/postgresql/data
+    networks:
+      - ud
+    deploy:
+      replicas: 1
+networks:
+  ud:
+    external: true
+volumes:
+  coordinator-data:
+  worker1-data:
+  worker2-data:
