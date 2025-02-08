@@ -4,3 +4,6 @@
 [submodule "backend"]
 	path = backend
 	url = git@github.com:Brayan-22/bases2-proyecto-final-backend.git
+[submodule "central-configuration"]
+	path = central-configuration
+	url = git@github.com:Brayan-22/ud-central-configuration.git
